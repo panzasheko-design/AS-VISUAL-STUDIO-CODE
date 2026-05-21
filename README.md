@@ -19,7 +19,18 @@ npm install
 npm run dev
 ```
 
-Note: Replace the Gemini API REST endpoint in `src/components/Editor.jsx` with the real endpoint for secure calls.
+Note: The app is configured to call a secure serverless proxy at `/.netlify/functions/gemini`.
+Set the real Gemini API key in environment variables when deploying.
+
+Deployment:
+
+- GitHub Pages preview is enabled (static). For a working Gemini proxy use Netlify Functions (recommended).
+- To enable Netlify deployment and functions, add the following repository secrets in GitHub:
+	- `GEMINI_API_KEY` — your Gemini API key
+	- `NETLIFY_AUTH_TOKEN` — token for Netlify deploy
+	- `NETLIFY_SITE_ID` — your Netlify site id
+
+Then push to `main` — the workflow will build and deploy to Netlify automatically.
 
 ---
 

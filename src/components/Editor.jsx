@@ -13,18 +13,19 @@ export default function Editor({apiKey}){
       alert('Please set your Gemini API key in Settings')
       return
     }
-    // Minimal example: call Gemini REST endpoint (user should replace with actual endpoint)
+    // Call the secure serverless proxy (Netlify function) which forwards to Gemini
     try{
-      const resp = await fetch('https://api.example-gemini.com/v1/generate',{
+      const resp = await fetch('/.netlify/functions/gemini',{
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: value, max_tokens: 256 })
       })
       const data = await resp.json()
       if(data?.output) setValue(v => v + '\n// Assistant:\n' + data.output)
+      else if(data?.choices && data.choices[0]) setValue(v => v + '\n// Assistant:\n' + (data.choices[0].text || JSON.stringify(data)))
     }catch(e){
       console.error(e)
-      alert('خطأ في الاتصال بواجهة Gemini. تأكد من المفتاح وإعدادات الشبكة.')
+      alert('خطأ في الاتصال بخدمة المساعد. تأكد من إعدادات النشر والمتغيرات.')
     }
   }
 
