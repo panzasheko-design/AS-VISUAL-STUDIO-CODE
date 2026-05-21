@@ -37,9 +37,8 @@ Then push to `main` — the workflow will build and deploy to Netlify automatica
 ## 📞 التواصل
 
 للأسئلة والاقتراحات:
-- 📧 Email: support@ascode.dev
+- 📧 Email: adammaan41@gmail.com
 - 🐦 Twitter: @ASCodeEditor
-- 💬 Discord: [رابط السيرفر]
 
 ---
 
